@@ -13,12 +13,6 @@ using namespace std;
 typedef struct elemenHakim *adr_hakim;
 typedef struct elemenTerdakwa *adr_terdakwa;
 
-struct elemenHakim {
-    dataHakim info;
-    adr_hakim nextHakim;
-    adr_terdakwa nextTerdakwa;
-};
-
 struct dataHakim {
     string nama;
     string NIP;
@@ -28,14 +22,15 @@ struct dataHakim {
     string noTelp;
 };
 
+struct elemenHakim {
+    dataHakim info;
+    adr_hakim nextHakim;
+    adr_terdakwa nextTerdakwa;
+};
+
 struct listHakim {
     adr_hakim first;
     adr_hakim last;
-};
-
-struct elemenTerdakwa {
-    dataTerdakwa info;
-    adr_terdakwa nextTerdakwa;
 };
 
 struct dataTerdakwa {
@@ -52,6 +47,11 @@ struct dataTerdakwa {
     string kewarganegaraan;
     string tempatLahir;
     string tanggalLahir;
+};
+
+struct elemenTerdakwa {
+    dataTerdakwa info;
+    adr_terdakwa nextTerdakwa;
 };
 
 struct listTerdakwa {

@@ -12,14 +12,13 @@ using namespace std;
 
 typedef struct elemenHakim *adr_hakim;
 typedef struct elemenTerdakwa *adr_terdakwa;
-
 struct dataHakim {
     string nama;
     string NIP;
+    string pendidikan;
     string jabatan;
     string pangkat;
-    string alamat;
-    string noTelp;
+    int usia;
 };
 
 struct elemenHakim {
@@ -32,21 +31,14 @@ struct listHakim {
     adr_hakim first;
     adr_hakim last;
 };
-
 struct dataTerdakwa {
     string nama;
     string alamat;
-    string noTelp;
-    string noKTP;
-    string noPaspor;
-    string noNPWP;
+    string NIK;
     string pekerjaan;
     string agama;
     string jenisKelamin;
-    string status;
-    string kewarganegaraan;
-    string tempatLahir;
-    string tanggalLahir;
+    string tempatTglLahir;
 };
 
 struct elemenTerdakwa {
@@ -58,7 +50,20 @@ struct listTerdakwa {
     adr_terdakwa first;
 };
 
-
+void createListHakim(listHakim &L);
+void createListTerdakwa(listTerdakwa &L);
+adr_hakim alokasiHakim(dataHakim x);
+adr_terdakwa alokasiTerdakwa(dataTerdakwa x);
+void insertFirstHakim(listHakim &L, adr_hakim P);
+void showListHakim(listHakim L);
+void deleteHakim(listHakim &L, adr_hakim &P, string nip);
+void searchHakim(listHakim L, adr_hakim &P, string nip);
+void insertFirstTerdakwa(listTerdakwa &L, adr_terdakwa P);
+void connectHakimTerdakwa(listHakim &LH, listTerdakwa &LT, adr_hakim &PH, adr_terdakwa &PT);
+void showHakimWithTerdakwa(listHakim LH, listTerdakwa LT);
+void searchTerdakwa(listTerdakwa L, adr_terdakwa &P, string x);
+void deleteTerdakwaFromHakim(listHakim &LH, listTerdakwa &LT, adr_hakim &PH, adr_terdakwa &PT);
+void hakimWithLeastTerdakwa(listHakim LH, listTerdakwa LT);
 
 
 #endif // HAKIM_H_INCLUDED

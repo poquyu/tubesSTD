@@ -69,13 +69,15 @@ void deleteHakim(listHakim &L, adr_hakim &P, string nip){
     }
 }
 
-void searchHakim(listHakim L, adr_hakim &P, string nip) {
+adr_hakim searchHakim(listHakim L, string nip) {
     adr_hakim Q = first(L);
     while (nextHakim(Q) != first(L) && info(Q).NIP != nip) {
         Q = nextHakim(Q);
     }
     if (info(Q).NIP == nip) {
-        P = Q;
+        return Q;
+    }else{
+        return NULL;
     }
 }
 
@@ -106,22 +108,29 @@ void connectHakimTerdakwa(listHakim &LH, listTerdakwa &LT, adr_hakim &PH, adr_te
     nextTerdakwa(PH) = PT;
 }
 
-adr_terdakwa cariDataTerdakwa(listHakim LH,string namaHakim, string nama){
+adr_terdakwa cariDataTerdakwa(listHakim LH,string NIP, string NIK){
     adr_hakim Q = first(LH);
-    while(nextHakim(Q) != first(LH) && info(Q).nama != namaHakim){
+    while(nextHakim(Q) != first(LH) && info(Q).NIP != NIP){
         Q = nextHakim(Q);
     }
-    if(info(Q).nama == namaHakim){
+    if(info(Q).NIP == NIP){
         adr_terdakwa P = nextTerdakwa(Q);
-        while(P != NULL && info(P).nama != namaTerdakwa){
+        while(P != NULL && info(P).NIK != NIK){
             P = nextTerdakwa(P);
         }
-        if(info(P).nama == namaTerdakwa){
+        if(info(P).NIK == NIK){
             return P;
         }else{
             return NULL;
         }
     }else{
         return NULL;
+    }
+}
+
+void deleteTerdakwaFromHakim(listHakim &LH, string NIP, string NIK, adr_terdakwa Pterdakwa){
+    adr_hakim Q = searchHakim(LH,NIP);
+    if(Q != NULL){
+        adr_
     }
 }

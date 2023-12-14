@@ -105,3 +105,23 @@ void showListHakim(listHakim L) {
 void connectHakimTerdakwa(listHakim &LH, listTerdakwa &LT, adr_hakim &PH, adr_terdakwa &PT) {
     nextTerdakwa(PH) = PT;
 }
+
+adr_terdakwa cariDataTerdakwa(listHakim LH,string namaHakim, string nama){
+    adr_hakim Q = first(LH);
+    while(nextHakim(Q) != first(LH) && info(Q).nama != namaHakim){
+        Q = nextHakim(Q);
+    }
+    if(info(Q).nama == namaHakim){
+        adr_terdakwa P = nextTerdakwa(Q);
+        while(P != NULL && info(P).nama != namaTerdakwa){
+            P = nextTerdakwa(P);
+        }
+        if(info(P).nama == namaTerdakwa){
+            return P;
+        }else{
+            return NULL;
+        }
+    }else{
+        return NULL;
+    }
+}

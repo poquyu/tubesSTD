@@ -45,11 +45,11 @@ struct elemenTerdakwa {
     dataTerdakwa info;
     adr_terdakwa nextTerdakwa;
 };
-
+/*
 struct listTerdakwa {
     adr_terdakwa first;
 };
-
+*/
 void createListHakim(listHakim &L);
 void createListTerdakwa(listTerdakwa &L);
 adr_hakim alokasiHakim(dataHakim x);

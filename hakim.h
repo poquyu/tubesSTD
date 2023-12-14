@@ -5,6 +5,7 @@
 using namespace std;
 
 #define first(L) L.first
+#define firstTerdakwa(P) P->firstTerdakwa
 #define nextHakim(P) P->nextHakim
 #define nextTerdakwa(P) P->nextTerdakwa
 #define info(P) P->info
@@ -24,7 +25,7 @@ struct dataHakim {
 struct elemenHakim {
     dataHakim info;
     adr_hakim nextHakim;
-    adr_terdakwa nextTerdakwa;
+    adr_terdakwa firstTerdakwa;
 };
 
 struct listHakim {
@@ -50,20 +51,26 @@ struct listTerdakwa {
     adr_terdakwa first;
 };
 */
+
+
+
 void createListHakim(listHakim &L);
-void createListTerdakwa(listTerdakwa &L);
+//void createListTerdakwa(listTerdakwa &L);
 adr_hakim alokasiHakim(dataHakim x);
 adr_terdakwa alokasiTerdakwa(dataTerdakwa x);
 void insertFirstHakim(listHakim &L, adr_hakim P);
 void showListHakim(listHakim L);
 void deleteHakim(listHakim &L, adr_hakim &P, string nip);
-adr_hakim searchHakim(listHakim L, string nip);
-void insertFirstTerdakwa(listTerdakwa &L, adr_terdakwa P);
-void connectHakimTerdakwa(listHakim &LH, listTerdakwa &LT, adr_hakim &PH, adr_terdakwa &PT);
-void showHakimWithTerdakwa(listHakim LH, listTerdakwa LT);
-adr_terdakwa cariDataTerdakwa(listHakim LH,string namaHakim, string nama);
-
-void hakimWithLeastTerdakwa(listHakim LH, listTerdakwa LT);
+void searchHakim(listHakim L, adr_hakim &P, string nip);
+//void insertFirstTerdakwa(listTerdakwa &L, adr_terdakwa P);
+void connectHakimTerdakwa(listHakim &LH, adr_hakim &PH, adr_terdakwa &PT);
+void showHakimWithTerdakwa(listHakim LH);
+//void searchTerdakwa(listTerdakwa L, adr_terdakwa &P, string x);
+void deleteTerdakwaFromHakim(listHakim &LH, adr_hakim &PH, adr_terdakwa &PT);
+void hakimWithLeastTerdakwa(listHakim LH);
+void menu(listHakim &LH);
+void dealokasiHakim(adr_hakim &P);
+void dealokasiTerdakwa(adr_terdakwa &P);
 
 
 #endif // HAKIM_H_INCLUDED

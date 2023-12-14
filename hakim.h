@@ -64,7 +64,7 @@ void deleteHakim(listHakim &L, adr_hakim &P, string nip);
 void searchHakim(listHakim L, adr_hakim &P, string nip);
 //void insertFirstTerdakwa(listTerdakwa &L, adr_terdakwa P);
 void connectHakimTerdakwa(listHakim &LH, adr_hakim &PH, adr_terdakwa &PT);
-void showHakimWithTerdakwa(listHakim LH);
+void showHakimWithTerdakwa(listHakim LH);   
 adr_terdakwa cariDataTerdakwa(listHakim LH,string NIP, string NIK);
 void deleteTerdakwaFromHakim(listHakim &LH, string NIP, string NIK, adr_terdakwa Pterdakwa);
 void hakimWithLeastTerdakwa(listHakim LH);

@@ -129,8 +129,13 @@ adr_terdakwa cariDataTerdakwa(listHakim LH,string NIP, string NIK){
 }
 
 void deleteTerdakwaFromHakim(listHakim &LH, string NIP, string NIK, adr_terdakwa Pterdakwa){
-    adr_hakim Q = searchHakim(LH,NIP);
+    adr_terdakwa Q = cariDataTerdakwa(LH,NIP,NIK);
     if(Q != NULL){
-        adr_
+        if(nextTerdakwa(Q) == NULL){
+            Pterdakwa = Q;
+            
+        }
+    }else{
+        cout << "Data terdakwa tidak ditemukan\n";
     }
 }

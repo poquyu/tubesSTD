@@ -133,7 +133,7 @@ void showHakimWithTerdakwa(listHakim LH, string NIP){
     adr_hakim Q = searchHakim(LH,NIP);
     if(Q != NULL){   
         cout << "Data Hakim : \n"; 
-        printHakim(LH,Q);
+        printHakim(Q);
         adr_terdakwa P = firstTerdakwa(Q);
         int i = 1;
         while(P!=NULL){

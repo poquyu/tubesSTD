@@ -65,5 +65,6 @@ void menu(listHakim &LH);
 void dealokasiHakim(adr_hakim &P);
 void dealokasiTerdakwa(adr_terdakwa &P);
 void header();
+void printHakim(listHakim LH);
 
 #endif // HAKIM_H_INCLUDED

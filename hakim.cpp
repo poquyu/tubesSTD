@@ -19,13 +19,13 @@ adr_hakim alokasiHakim(dataHakim x) {
 }
 adr_terdakwa alokasiTerdakwa(dataTerdakwa x){
     adr_terdakwa P = new elemenTerdakwa;
-    info(P).nama = x.nama;
-    info(P).alamat = x.alamat;
-    info(P).NIK = x.NIK;
-    info(P).pekerjaan = x.pekerjaan;
-    info(P).agama = x.agama;
-    info(P).jenisKelamin = x.jenisKelamin;
-    info(P).tempatTglLahir = x.tempatTglLahir;
+    infoTerdakwa(P).nama = x.nama;
+    infoTerdakwa(P).alamat = x.alamat;
+    infoTerdakwa(P).NIK = x.NIK;
+    infoTerdakwa(P).pekerjaan = x.pekerjaan;
+    infoTerdakwa(P).agama = x.agama;
+    infoTerdakwa(P).jenisKelamin = x.jenisKelamin;
+    infoTerdakwa(P).tempatTglLahir = x.tempatTglLahir;
     nextTerdakwa(P) = NULL;
     return P;
 }
@@ -48,13 +48,7 @@ void insertFirstHakim(listHakim &L, adr_hakim P) {
 void showListHakim(listHakim L) {
     adr_hakim P = first(L);
     do {
-        cout << "Nama: " << info(P).nama << endl;
-        cout << "NIP: " << info(P).NIP << endl;
-        cout << "Pendidikan: " << info(P).pendidikan << endl;
-        cout << "Jabatan: " << info(P).jabatan << endl;
-        cout << "Pangkat: " << info(P).pangkat << endl;
-        cout << "Usia: " << info(P).usia << endl;
-        cout << endl;
+        printHakim(P);
         P = nextHakim(P);
     } while (P != first(L));
 }
@@ -100,23 +94,56 @@ void insertTerdakwa(listHakim &L, adr_terdakwa P, string nip){
     }
 }
 
-void showHakimWithTerdakwa(listHakim LH, string NIP){
-    adr_hakim Q = searchHakim;
-    int i = 1;
-    while(Q!=NULL){
-        cout << "Data hakim ke " << i << endl;
-        cout << "Nama : " << infoHakim(Q).nama << endl;
-        cout << "NIP : " << infoHakim(Q).NIP << endl;
-        cout << "Pendidikan : " << infoHakim(Q).pendidikan << endl;
-        cout << "Jabatan : " << infoHakim(Q).jabatan << endl;
-        cout << "Pangkat : " << infoHakim(Q).pangkat << endl;
-        cout << "Umur : " << infoHakim(Q).usia << endl;
-        adr_terdakwa P = firstTerdakwa(Q);
-        while(P!=NULL){
-            cout << "Data Terdakwa "
-        }
-        i++;
+void printHakim(adr_hakim Q){
+    cout << "Nama : " << infoHakim(Q).nama << endl;
+    cout << "NIP : " << infoHakim(Q).NIP << endl;
+    cout << "Pendidikan : " << infoHakim(Q).pendidikan << endl;
+    cout << "Jabatan : " << infoHakim(Q).jabatan << endl;
+    cout << "Pangkat : " << infoHakim(Q).pangkat << endl;
+    cout << "Umur : " << infoHakim(Q).usia << endl;
+}
 
+void printTerdakwa(adr_terdakwa Q){
+    cout << "Nama : " << infoTerdakwa(Q).nama << endl;
+    cout << "Alamat : " << infoTerdakwa(Q).alamat << endl;
+    cout << "NIK : " << infoTerdakwa(Q).NIK << endl;
+    cout << "Pekerjaan : " << infoTerdakwa(Q).pekerjaan << endl;
+    cout << "Agama : " << infoTerdakwa(Q).agama << endl;
+    cout << "Jenis Kelamin : " << infoTerdakwa(Q).jenisKelamin << endl;
+    cout << "Tempat Tanggal Lahir : " << infoTerdakwa(Q).tempatTglLahir << endl;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void showHakimWithTerdakwa(listHakim LH, string NIP){
+    adr_hakim Q = searchHakim(LH,NIP);
+    if(Q != NULL){   
+        cout << "Data Hakim : \n"; 
+        printHakim(LH,Q);
+        adr_terdakwa P = firstTerdakwa(Q);
+        int i = 1;
+        while(P!=NULL){
+            cout << "Data Terdakwa ke : " << i << endl;
+            printTerdakwa(P);
+            i++;
+            P = nextTerdakwa(P);
+        }
+    }else{
+        cout << "Data Hakim tidak ditemukan\n";
     }
 }
 

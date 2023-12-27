@@ -46,24 +46,16 @@ struct elemenTerdakwa {
     dataTerdakwa info;
     adr_terdakwa nextTerdakwa;
 };
-/*
-struct listTerdakwa {
-    adr_terdakwa first;
-};
-*/
-
 
 
 void createListHakim(listHakim &L);
-//void createListTerdakwa(listTerdakwa &L);
 adr_hakim alokasiHakim(dataHakim x);
 adr_terdakwa alokasiTerdakwa(dataTerdakwa x);
 void insertFirstHakim(listHakim &L, adr_hakim P);
 void showListHakim(listHakim L);
 void deleteHakim(listHakim &L, adr_hakim &P, string nip);
 void searchHakim(listHakim L, adr_hakim &P, string nip);
-//void insertFirstTerdakwa(listTerdakwa &L, adr_terdakwa P);
-void connectHakimTerdakwa(listHakim &LH, adr_hakim &PH, adr_terdakwa &PT);
+void insertTerdakwa(listHakim &L, adr_terdakwa P);
 void showHakimWithTerdakwa(listHakim LH);   
 adr_terdakwa cariDataTerdakwa(listHakim LH,string NIP, string NIK);
 void deleteTerdakwaFromHakim(listHakim &LH, string NIP, string NIK, adr_terdakwa Pterdakwa);

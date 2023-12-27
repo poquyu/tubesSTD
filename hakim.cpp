@@ -4,10 +4,6 @@ void createListHakim(listHakim &L) {
     first(L) = NULL;
     last(L) = NULL;
 }
-/*
-void createListTerdakwa(listTerdakwa &L) {
-    first(L) = NULL;
-}*/
 
 adr_hakim alokasiHakim(dataHakim x) {
     adr_hakim P = new elemenHakim;

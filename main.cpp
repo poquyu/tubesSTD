@@ -3,6 +3,6 @@
 
 int main()
 {
-    cout << "Hello world!" << endl;
+    header();
     return 0;
 }

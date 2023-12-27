@@ -91,7 +91,19 @@ adr_hakim searchHakim(listHakim L, string nip) {
     }
 }
 
+void insertTerdakwa(listHakim &L, adr_terdakwa P, string nip){
+    adr_hakim Q = searchHakim(L,nip);
+    if(firstTerdakwa(Q) == NULL){
+        firstTerdakwa(Q) = P; 
+    }else{
+        nextTerdakwa(P) = firstTerdakwa(Q);
+        firstTerdakwa(Q) = P;
+    }
+}
 
+void showHakimWithTerdakwa(listHakim LH){
+    
+}
 
 
 
@@ -205,4 +217,36 @@ void dealokasiTerdakwa(adr_terdakwa &P) {
     delete P;
 }
 
+void header(){
+    cout << "=============================================\n";
+    cout << "|                                           |\n";
+    cout << "|            Aplikasi Pendataan             |\n";
+    cout << "|            Hakim dan Terdakwa             |\n";
+    cout << "|                                           |\n";
+    cout << "=============================================\n";
+}
 
+void menu(){
+    cout << "=============================================\n";
+    cout << "|                                           |\n";
+    cout << "|                                           |\n";
+    cout << "|                                           |\n";
+    cout << "|                                           |\n";
+    cout << "|                                           |\n";
+    cout << "|                                           |\n";
+    cout << "|                                           |\n";
+    cout << "|                                           |\n";
+    cout << "|                                           |\n";
+    cout << "|                                           |\n";
+    cout << "|                                           |\n";
+    cout << "|                                           |\n";
+    cout << "|                                           |\n";
+    cout << "=============================================\n";
+    int input;
+    do{
+        
+        cin >> input;
+        cout << endl;
+
+    }while();
+}

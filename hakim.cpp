@@ -44,6 +44,24 @@ void insertFirstHakim(listHakim &L, adr_hakim P) {
         nextHakim(Q) = P; 
     }
 }
+void printHakim(adr_hakim Q){
+    cout << "Nama : " << infoHakim(Q).nama << endl;
+    cout << "NIP : " << infoHakim(Q).NIP << endl;
+    cout << "Pendidikan : " << infoHakim(Q).pendidikan << endl;
+    cout << "Jabatan : " << infoHakim(Q).jabatan << endl;
+    cout << "Pangkat : " << infoHakim(Q).pangkat << endl;
+    cout << "Umur : " << infoHakim(Q).usia << endl;
+}
+
+void printTerdakwa(adr_terdakwa Q){
+    cout << "Nama : " << infoTerdakwa(Q).nama << endl;
+    cout << "Alamat : " << infoTerdakwa(Q).alamat << endl;
+    cout << "NIK : " << infoTerdakwa(Q).NIK << endl;
+    cout << "Pekerjaan : " << infoTerdakwa(Q).pekerjaan << endl;
+    cout << "Agama : " << infoTerdakwa(Q).agama << endl;
+    cout << "Jenis Kelamin : " << infoTerdakwa(Q).jenisKelamin << endl;
+    cout << "Tempat Tanggal Lahir : " << infoTerdakwa(Q).tempatTglLahir << endl;
+}
 
 void showListHakim(listHakim L) {
     adr_hakim P = first(L);
@@ -94,24 +112,7 @@ void insertTerdakwa(listHakim &L, adr_terdakwa P, string nip){
     }
 }
 
-void printHakim(adr_hakim Q){
-    cout << "Nama : " << infoHakim(Q).nama << endl;
-    cout << "NIP : " << infoHakim(Q).NIP << endl;
-    cout << "Pendidikan : " << infoHakim(Q).pendidikan << endl;
-    cout << "Jabatan : " << infoHakim(Q).jabatan << endl;
-    cout << "Pangkat : " << infoHakim(Q).pangkat << endl;
-    cout << "Umur : " << infoHakim(Q).usia << endl;
-}
 
-void printTerdakwa(adr_terdakwa Q){
-    cout << "Nama : " << infoTerdakwa(Q).nama << endl;
-    cout << "Alamat : " << infoTerdakwa(Q).alamat << endl;
-    cout << "NIK : " << infoTerdakwa(Q).NIK << endl;
-    cout << "Pekerjaan : " << infoTerdakwa(Q).pekerjaan << endl;
-    cout << "Agama : " << infoTerdakwa(Q).agama << endl;
-    cout << "Jenis Kelamin : " << infoTerdakwa(Q).jenisKelamin << endl;
-    cout << "Tempat Tanggal Lahir : " << infoTerdakwa(Q).tempatTglLahir << endl;
-}
 
 
 

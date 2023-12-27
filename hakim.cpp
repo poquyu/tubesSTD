@@ -46,6 +46,20 @@ void insertFirstHakim(listHakim &L, adr_hakim P) {
     }
 }
 
+void showListHakim(listHakim L) {
+    adr_hakim P = first(L);
+    do {
+        cout << "Nama: " << info(P).nama << endl;
+        cout << "NIP: " << info(P).NIP << endl;
+        cout << "Pendidikan: " << info(P).pendidikan << endl;
+        cout << "Jabatan: " << info(P).jabatan << endl;
+        cout << "Pangkat: " << info(P).pangkat << endl;
+        cout << "Usia: " << info(P).usia << endl;
+        cout << endl;
+        P = nextHakim(P);
+    } while (P != first(L));
+}
+
 void deleteHakim(listHakim &L, adr_hakim &P, string nip){
     adr_hakim Q = first(L);
     if (info(Q).NIP == nip) {
@@ -65,12 +79,6 @@ void deleteHakim(listHakim &L, adr_hakim &P, string nip){
     }
 }
 
-void dealokasiHakim(adr_hakim &P) {
-    delete P;
-}
-void dealokasiTerdakwa(adr_terdakwa &P) {
-    delete P;
-}
 adr_hakim searchHakim(listHakim L, string nip) {
     adr_hakim Q = first(L);
     while (nextHakim(Q) != first(L) && info(Q).NIP != nip) {
@@ -82,62 +90,11 @@ adr_hakim searchHakim(listHakim L, string nip) {
         return NULL;
     }
 }
-/*
-void insertFirstTerdakwa(listTerdakwa &L, adr_terdakwa P){
-    if (first(L) == NULL) {
-        first(L) = P;
-    } else {
-        nextTerdakwa(P) = first(L);
-        first(L) = P;
-    }
+void dealokasiHakim(adr_hakim &P) {
+    delete P;
 }
-*/
-
-void showListHakim(listHakim L) {
-    adr_hakim P = first(L);
-    do {
-        cout << "Nama: " << info(P).nama << endl;
-        cout << "NIP: " << info(P).NIP << endl;
-        cout << "Pendidikan: " << info(P).pendidikan << endl;
-        cout << "Jabatan: " << info(P).jabatan << endl;
-        cout << "Pangkat: " << info(P).pangkat << endl;
-        cout << "Usia: " << info(P).usia << endl;
-        cout << endl;
-        P = nextHakim(P);
-    } while (P != first(L));
+void dealokasiTerdakwa(adr_terdakwa &P) {
+    delete P;
 }
-
-void connectHakimTerdakwa(listHakim &LH, adr_hakim &PH, adr_terdakwa PT, string nip){
-    adr_hakim Q = searchHakim(LH, nip);
-    if (firstTerdakwa(Q) == NULL){
-        firstTerdakwa(PH) = PT;
-    }else{
-        nextTerdakwa(PT) = firstTerdakwa(Q);
-        firstTerdakwa(Q) = PT;  
-    }
-    
-}
-/*
-void showHakimWithTerdakwa(listHakim LH, listTerdakwa LT) {
-    adr_hakim P = first(LH);
-    adr_terdakwa Q;
-    do {
-        cout << "Nama: " << info(P).nama << endl;
-        cout << "NIP: " << info(P).NIP << endl;
-        cout << "Pendidikan: " << info(P).pendidikan << endl;
-        cout << "Jabatan: " << info(P).jabatan << endl;
-        cout << "Pangkat: " << info(P).pangkat << endl;
-        cout << "Usia: " << info(P).usia << endl;
-        cout << "Terdakwa: " << endl;
-        Q = nextTerdakwa(P);
-        while (Q != NULL) {
-            cout << info(Q).nama << endl;
-            Q = nextTerdakwa(Q);
-        }
-        cout << endl;
-        P = nextHakim(P);
-    } while (P != first(LH));
-}
-*/
 
 

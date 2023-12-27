@@ -102,7 +102,23 @@ void insertTerdakwa(listHakim &L, adr_terdakwa P, string nip){
 }
 
 void showHakimWithTerdakwa(listHakim LH){
-    adr_hakim Q = 
+    adr_hakim Q = first(LH);
+    int i = 1;
+    while(Q!=NULL){
+        cout << "Data hakim ke " << i << endl;
+        cout << "Nama : " << info(Q).nama << endl;
+        cout << "NIP : " << info(Q).NIP << endl;
+        cout << "Pendidikan : " << info(Q).pendidikan << endl;
+        cout << "Jabatan : " << info(Q).jabatan << endl;
+        cout << "Pangkat : " << info(Q).pangkat << endl;
+        cout << "Umur : " << info(Q).usia << endl;
+        adr_hakim P = firstTerdakwa(Q);
+        while(P!=NULL){
+            cout << "Data Terdakwa "
+        }
+        i++;
+
+    }
 }
 
 

@@ -17,6 +17,7 @@ adr_hakim alokasiHakim(dataHakim x) {
     firstTerdakwa(P) = NULL;
     return P;
 }
+
 adr_terdakwa alokasiTerdakwa(dataTerdakwa x){
     adr_terdakwa P = new elemenTerdakwa;
     infoTerdakwa(P).nama = x.nama;
@@ -112,24 +113,6 @@ void insertTerdakwa(listHakim &L, adr_terdakwa P, string nip){
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 void showHakimWithTerdakwa(listHakim LH, string NIP){
     adr_hakim Q = searchHakim(LH,NIP);
     if(Q != NULL){   
@@ -148,42 +131,7 @@ void showHakimWithTerdakwa(listHakim LH, string NIP){
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-adr_terdakwa cariDataTerdakwa(listHakim LH,string NIP, string NIK){
+adr_terdakwa searchTerdakwa(listHakim LH,string NIP, string NIK){
     adr_hakim P = searchHakim(LH,NIP);
     adr_terdakwa Q = firstTerdakwa(P);
     while (nextTerdakwa(Q) != NULL && infoTerdakwa(Q).NIK != NIK) {
@@ -192,30 +140,65 @@ adr_terdakwa cariDataTerdakwa(listHakim LH,string NIP, string NIK){
     if (infoTerdakwa(Q).NIK == NIK) {
         return Q;
     }else{
-        cout << "Data terdakwa tidak ditemukan" << endl;
+        return NULL;
     }
 }
 
 void deleteTerdakwaFromHakim(listHakim &LH, string NIP, string NIK, adr_terdakwa &Pterdakwa){
     adr_hakim P = searchHakim(LH,NIP);
-    adr_terdakwa Q = firstTerdakwa(P);
-    if (infoTerdakwa(Q).NIK == NIK) {
-        Pterdakwa = Q;
-        firstTerdakwa(P) = nextTerdakwa(Q);
-        nextTerdakwa(Pterdakwa) = NULL;
-    } else {
-        while (nextTerdakwa(Q) != NULL && infoTerdakwa(nextTerdakwa(Q)).NIK != NIK) {
-            Q = nextTerdakwa(Q);
-        }
-        if (infoTerdakwa(nextTerdakwa(Q)).NIK == NIK) {
-            Pterdakwa = nextTerdakwa(Q);
-            nextTerdakwa(Q) = nextTerdakwa(Pterdakwa);
-            nextTerdakwa(Pterdakwa) = NULL;
-        }
+    adr_terdakwa Q = searchTerdakwa(LH,NIP,NIK);
+    //cari last
+    adr_terdakwa R = firstTerdakwa(P);
+    while (nextTerdakwa(R)!= NULL){
+        R = nextTerdakwa(R);
     }
-
+    if (firstTerdakwa(P) != NULL) {
+        if(Q == firstTerdakwa(P)){
+            //deleteFirst
+            Pterdakwa = Q;
+            firstTerdakwa(P) = nextTerdakwa(Q);
+            nextTerdakwa(Pterdakwa) = NULL;
+        }else if(Q == R){
+            //deleteLast
+            adr_terdakwa S = firstTerdakwa(P);
+            while(nextTerdakwa(nextTerdakwa(S)) != NULL){
+                S = nextTerdakwa(S);
+            }
+            Pterdakwa = Q;
+            nextTerdakwa(S) = NULL;
+        }else{
+            //deleteAfter
+            adr_terdakwa prec = firstTerdakwa(T);
+            while(nextTerdakwa(prec) != Q){
+                prec = nextTerdakwa(prec);
+            }
+            Pterdakwa = Q;
+            prec = nextTerdakwa(Q);
+            nextTerdakwa(Pterdakwa) == NULL;
+        }    
+    } else {
+        cout << "Hakim tidak memiliki terdakwa\n";
+    }
 }
 
+void hakimWithLeastTerdakwa(listHakim LH, adr_hakim &Q){
+    Q = first(LH);
+    min = 9999999;
+    adr_hakim Pmin;
+    while(Q != NULL){
+        adr_terdakwa P = firstTerdakwa(Q);
+        int sum = 0;
+        while(P != NULL){
+            sum++;
+            P = nextTerdakwa(P);
+        }
+        if(sum < min){
+            min = sum;
+            Pmin = Q;
+        } 
+        Q = nextHakim(Q);
+    }
+}
 
 
 

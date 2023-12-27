@@ -102,7 +102,7 @@ void insertTerdakwa(listHakim &L, adr_terdakwa P, string nip){
 }
 
 void showHakimWithTerdakwa(listHakim LH){
-    
+    adr_hakim Q = 
 }
 
 
@@ -137,18 +137,7 @@ void showHakimWithTerdakwa(listHakim LH){
 
 
 
-adr_terdakwa cariDataTerdakwa(listHakim LH,string NIP, string NIK){
-    adr_hakim P = searchHakim(LH,NIP);
-    adr_terdakwa Q = firstTerdakwa(P);
-    while (nextTerdakwa(Q) != NULL && info(Q).NIK != NIK) {
-        Q = nextTerdakwa(Q);
-    }
-    if (info(Q).NIK == NIK) {
-        return Q;
-    }else{
-        cout << "Data terdakwa tidak ditemukan" << endl;
-    }
-}
+
 
 
 
@@ -255,7 +244,7 @@ void menu(){
     cout << "=============================================\n";
     int input;
     do{
-        
+
         cin >> input;
         cout << endl;
 

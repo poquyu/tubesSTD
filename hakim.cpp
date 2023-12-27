@@ -19,23 +19,21 @@ adr_hakim alokasiHakim(dataHakim x) {
 }
 adr_terdakwa alokasiTerdakwa(dataTerdakwa x){
     adr_terdakwa P = new elemenTerdakwa;
-    infoTerdakwa(P).nama = x.nama;
-    infoTerdakwa(P).alamat = x.alamat;
-    infoTerdakwa(P).NIK = x.NIK;
-    infoTerdakwa(P).pekerjaan = x.pekerjaan;
-    infoTerdakwa(P).agama = x.agama;
-    infoTerdakwa(P).jenisKelamin = x.jenisKelamin;
-    infoTerdakwa(P).tempatTglLahir = x.tempatTglLahir;
+    info(P).nama = x.nama;
+    info(P).alamat = x.alamat;
+    info(P).NIK = x.NIK;
+    info(P).pekerjaan = x.pekerjaan;
+    info(P).agama = x.agama;
+    info(P).jenisKelamin = x.jenisKelamin;
+    info(P).tempatTglLahir = x.tempatTglLahir;
     nextTerdakwa(P) = NULL;
     return P;
 }
 
-
-
 void insertFirstHakim(listHakim &L, adr_hakim P) {
     if (first(L) == NULL) {
         first(L) = P;
-        nextHakim(P) = P;
+        nextHakim(P) = P; 
     } else {
         adr_hakim Q = first(L);
         while (nextHakim(Q) != first(L)){
@@ -43,21 +41,20 @@ void insertFirstHakim(listHakim &L, adr_hakim P) {
         }
         nextHakim(P) = first(L);
         first(L) = P;
-        nextHakim(Q) = P;
+        nextHakim(Q) = P; 
     }
 }
 
 void showListHakim(listHakim L) {
     adr_hakim P = first(L);
     do {
-        cout << "=============================================\n";
-        cout << "Nama: " << infoHakim(P).nama << endl;
-        cout << "NIP: " << infoHakim(P).NIP << endl;
-        cout << "Pendidikan: " << infoHakim(P).pendidikan << endl;
-        cout << "Jabatan: " << infoHakim(P).jabatan << endl;
-        cout << "Pangkat: " << infoHakim(P).pangkat << endl;
-        cout << "Usia: " << infoHakim(P).usia << endl;
-        cout << "=============================================\n";
+        cout << "Nama: " << info(P).nama << endl;
+        cout << "NIP: " << info(P).NIP << endl;
+        cout << "Pendidikan: " << info(P).pendidikan << endl;
+        cout << "Jabatan: " << info(P).jabatan << endl;
+        cout << "Pangkat: " << info(P).pangkat << endl;
+        cout << "Usia: " << info(P).usia << endl;
+        cout << endl;
         P = nextHakim(P);
     } while (P != first(L));
 }
@@ -96,15 +93,15 @@ adr_hakim searchHakim(listHakim L, string nip){
 void insertTerdakwa(listHakim &L, adr_terdakwa P, string nip){
     adr_hakim Q = searchHakim(L,nip);
     if(firstTerdakwa(Q) == NULL){
-        firstTerdakwa(Q) = P;
+        firstTerdakwa(Q) = P; 
     }else{
         nextTerdakwa(P) = firstTerdakwa(Q);
         firstTerdakwa(Q) = P;
     }
 }
 
-void showHakimWithTerdakwa(listHakim LH){
-    adr_hakim Q = first(LH);
+void showHakimWithTerdakwa(listHakim LH, string NIP){
+    adr_hakim Q = searchHakim;
     int i = 1;
     while(Q!=NULL){
         cout << "Data hakim ke " << i << endl;
@@ -122,6 +119,8 @@ void showHakimWithTerdakwa(listHakim LH){
 
     }
 }
+
+
 
 
 

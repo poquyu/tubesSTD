@@ -50,22 +50,39 @@ struct elemenTerdakwa {
 
 
 void createListHakim(listHakim &L);
+
 adr_hakim alokasiHakim(dataHakim x);
 adr_terdakwa alokasiTerdakwa(dataTerdakwa x);
-void insertFirstHakim(listHakim &L, adr_hakim P);
-void showListHakim(listHakim L);
-void deleteHakim(listHakim &L, adr_hakim &P, string nip);
-adr_hakim searchHakim(listHakim L, string nip);
-void insertTerdakwa(listHakim &L, adr_terdakwa P, string nip);
-void showHakimWithTerdakwa(listHakim LH);   
-adr_terdakwa searchTerdakwa(listHakim LH,string NIP, string NIK);
-void deleteTerdakwaFromHakim(listHakim &LH, string NIP, string NIK, adr_terdakwa &Pterdakwa);
-void hakimWithLeastTerdakwa(listHakim LH,adr_hakim &Q);
-void menu(listHakim &LH);
 void dealokasiHakim(adr_hakim &P);
 void dealokasiTerdakwa(adr_terdakwa &P);
-void header();
+
+void insertFirstHakim(listHakim &L, adr_hakim P);
+
+void deleteFirstHakim(listHakim &L, adr_hakim &P);
+void deleteLastHakim(listHakim &L, adr_hakim &P);
+void deleteAfterHakim(listHakim &L, adr_hakim Prec, adr_hakim &P);
+void deleteHakim(listHakim &L, adr_hakim &P, string nip);
+void deleteAllTerdakwa(adr_hakim &P);
+
+adr_hakim searchHakim(listHakim L, string nip);
+void insertTerdakwa(listHakim &L, adr_terdakwa P, string nip);
+adr_terdakwa cariDataTerdakwa(listHakim L,string NIP, string NIK);
+void deleteTerdakwaFromHakim(listHakim &L, string NIP, string NIK, adr_terdakwa &Pterdakwa);
+void hakimWithLeastTerdakwa(listHakim L, adr_hakim &Q);
+
+void showListHakim(listHakim L);
+void menuShowHakimWithTerdakwa(listHakim L, string NIP);
+void menuSearchHakim(listHakim L, string NIP);
+void menuSearchTerdakwa(listHakim L, string NIP, string NIK);
+void menuInsertHakim(listHakim &L);
+void menuInsertTerdakwa(listHakim &L, string NIP);
+
 void printHakim(adr_hakim Q);
 void printTerdakwa(adr_terdakwa Q);
+void mainMenu(listHakim &L);
+
+void header();
+
+void testCase(listHakim &L);
 
 #endif // HAKIM_H_INCLUDED

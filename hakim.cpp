@@ -116,8 +116,6 @@ void deleteHakim(listHakim &L, adr_hakim &P, string NIP){
             deleteAllTerdakwa(Q);
             deleteAfterHakim(L,prec,P);
         }
-    }else{
-        cout << "Data Hakim tidak ditemukan\n";
     }
 }
 
@@ -339,23 +337,14 @@ void showListHakim(listHakim L) {
         cout << endl;
         cout << "                      List Kosong                           \n";
         cout << endl;
-        cout << "============================================================\n";
-        cout << endl;
-        cout << "             Masukkan apa saja untuk kembali                \n";
-        cout << endl;
-        cout << "============================================================\n";
+        backToMenu();
         char input = getch();
     }else {
         do {
             P = nextHakim(P);
             printHakim(P);
         } while ((P) != first(L));
-        cout << "============================================================\n";
-        cout << endl;
-        cout << "             Masukkan apa saja untuk kembali                \n";
-        cout << endl;
-        cout << "============================================================\n";
-        char input = getch();
+        backToMenu();
     }
 }
 void menuShowHakimWithTerdakwa(listHakim L){
@@ -389,12 +378,7 @@ void menuShowHakimWithTerdakwa(listHakim L){
         }else{
                 cout << "                Data Hakim tidak ditemukan                 \n";
         }
-        cout << "============================================================\n";
-        cout << endl;
-        cout << "             Masukkan apa saja untuk kembali                \n";
-        cout << endl;
-        cout << "============================================================\n";
-        char input = getch();
+        backToMenu();
     }
 }
 
@@ -415,12 +399,7 @@ void menuSearchHakim(listHakim L){
             cout << "                Data Hakim tidak ditemukan                 \n";
             cout << endl;
         }
-        cout << "============================================================\n";
-        cout << endl;
-        cout << "             Masukkan apa saja untuk kembali                \n";
-        cout << endl;
-        cout << "============================================================\n";
-        char input = getch();
+        backToMenu();
     }
 }
 
@@ -458,12 +437,7 @@ void menuSearchTerdakwa(listHakim L){
             cout << "                Data Hakim tidak ditemukan                 \n";
             cout << endl;
         }
-        cout << "============================================================\n";
-        cout << endl;
-        cout << "             Masukkan apa saja untuk kembali                \n";
-        cout << endl;
-        cout << "============================================================\n";
-        char input = getch();
+        backToMenu();
     }
 }
 
@@ -476,18 +450,20 @@ void menuDeleteHakim(listHakim &L){
         cout << "============================================================\n";
         cout << " Masukkan NIP Hakim : ";
         cin >> NIP;
-        adr_hakim P;
-        deleteHakim(L,P,NIP);
-        cout << "============================================================\n";
-        cout << endl;
-        cout << "           Hakim dengan NIP " << infoHakim(P).NIP << " telah dihapus\n";
-        cout << endl;
-        cout << "============================================================\n";
-        cout << endl;
-        cout << "             Masukkan apa saja untuk kembali                \n";
-        cout << endl;
-        cout << "============================================================\n";
-        char input = getch();
+        adr_hakim Q = searchHakim(L,NIP);
+        if (Q != NULL){
+            deleteHakim(L,Q,NIP);
+            cout << "============================================================\n";
+            cout << endl;
+            cout << "           Hakim dengan NIP " << infoHakim(Q).NIP << " telah dihapus\n";
+            cout << endl;
+            backToMenu();
+        }else{
+            cout << endl;
+            cout << "                Data Hakim tidak ditemukan                 \n";
+            cout << endl;
+            backToMenu();
+        }
     }
 }
 

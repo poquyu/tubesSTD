@@ -68,14 +68,16 @@ adr_hakim searchHakim(listHakim L, string nip);
 void insertTerdakwa(listHakim &L, adr_terdakwa P, string nip);
 adr_terdakwa cariDataTerdakwa(listHakim L,string NIP, string NIK);
 void deleteTerdakwaFromHakim(listHakim &L, string NIP, string NIK, adr_terdakwa &Pterdakwa);
-void hakimWithLeastTerdakwa(listHakim L, adr_hakim &Q);
+void hakimWithLeastTerdakwa(listHakim L, adr_hakim &Q, int &min);
+
 
 void showListHakim(listHakim L);
-void menuShowHakimWithTerdakwa(listHakim L, string NIP);
-void menuSearchHakim(listHakim L, string NIP);
-void menuSearchTerdakwa(listHakim L, string NIP, string NIK);
+void menuShowHakimWithTerdakwa(listHakim L);
+void menuSearchHakim(listHakim L);
+void menuSearchTerdakwa(listHakim L);
 void menuInsertHakim(listHakim &L);
-void menuInsertTerdakwa(listHakim &L, string NIP);
+void menuInsertTerdakwa(listHakim &L);
+
 
 void printHakim(adr_hakim Q);
 void printTerdakwa(adr_terdakwa Q);

@@ -341,8 +341,8 @@ void showListHakim(listHakim L) {
         char input = getch();
     }else {
         do {
-            P = nextHakim(P);
             printHakim(P);
+            P = nextHakim(P);
         } while ((P) != first(L));
         backToMenu();
     }

@@ -217,6 +217,33 @@ void hakimWithLeastTerdakwa(listHakim L, adr_hakim &Q, int &min){
     Q = Pmin;
 }
 
+bool checkDuplicateHakim(listHakim L, string NIP){
+    adr_hakim P = first(L);
+    while(nextHakim(P) != first(L) && infoHakim(P).NIP != NIP){
+        P = nextHakim(P);
+    }
+    if(infoHakim(P).NIP == NIP){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+bool checkDuplicateTerdakwa(listHakim L, string NIK){
+    adr_hakim P = first(L);
+    adr_terdakwa Q;
+    while(P != first(L)){
+        Q = firstTerdakwa(P);
+        while(Q != NULL && infoTerdakwa(Q).NIK != NIK){
+            Q = nextTerdakwa(Q);
+        }
+        if(Q != NULL){
+            return true;
+        }
+        P = nextHakim(P);
+    }
+    return false;
+}
 
 
 
@@ -247,7 +274,7 @@ void header(){
 
 void mainMenu(listHakim &L){
 
-    int input;
+    string input;
     do {
         system("cls");
         header();
@@ -270,33 +297,33 @@ void mainMenu(listHakim &L){
         cout << "   Pilih Menu :                                            \n";
         cin >> input;
 
-        if (input == 1){
+        if (input == "1"){
             showListHakim(L);
-        }else if (input == 2){
+        }else if (input == "2"){
             menuShowHakimWithTerdakwa(L);
-        }else if (input == 3){
+        }else if (input == "3"){
             menuSearchHakim(L);
-        }else if (input == 4){
+        }else if (input == "4"){
             menuSearchTerdakwa(L);
-        }else if (input == 5){
+        }else if (input == "5"){
             menuDeleteHakim(L);
-        }else if (input == 6){
+        }else if (input == "6"){
             menuDeleteTerdakwa(L);
-        }else if (input == 7){
+        }else if (input == "7"){
             menuShowLeastTerdakwa(L);
-        }else if (input == 8){
+        }else if (input == "8"){
             menuInsertHakim(L);
-        }else if (input == 9){
+        }else if (input == "9"){
             menuInsertTerdakwa(L);
-        }else if (input == 10){
+        }else if (input == "10"){
             testCase(L);
-        }else if (input == 0){
+        }else if (input == "0"){
             break;
         }else {
             cout << "                     Input tidak valid                      \n";
             backToMenu();
         }
-    } while(input != 0);
+    } while(input != "0");
     cout << "============================================================\n";
     cout << "                      Terima Kasih\n";
     cout << "============================================================\n";
@@ -534,25 +561,34 @@ void menuInsertHakim(listHakim &L){
     system("cls");
     dataHakim x;
     cout << "============================================================\n";
-    cout << "   Masukkan Nama Hakim : ";
-    cin >> x.nama;
+    cin.ignore();
     cout << "   Masukkan NIP Hakim : ";
-    cin >> x.NIP;
-    cout << "   Masukkan Pendidikan Hakim : ";
-    cin >> x.pendidikan;
-    cout << "   Masukkan Jabatan Hakim : ";
-    cin >> x.jabatan;
-    cout << "   Masukkan Pangkat Hakim : ";
-    cin >> x.pangkat;
-    cout << "   Masukkan Umur Hakim : ";
-    cin >> x.usia;
-    adr_hakim P = alokasiHakim(x);
-    insertFirstHakim(L,P);
-    cout << "============================================================\n";
-    cout << endl;
-    cout << "           Hakim dengan NIP " << infoHakim(P).NIP << " telah ditambahkan\n";
-    cout << endl;
-    backToMenu();
+    getline(cin, x.NIP);
+    if (checkDuplicateHakim(L,x.NIP)){
+        cout << "============================================================\n";
+        cout << endl;
+        cout << "             Hakim dengan NIP " << x.NIP << " sudah ada\n";
+        cout << endl;
+        backToMenu();
+    }else{
+        cout << "   Masukkan Nama Hakim : ";
+        getline(cin, x.nama);
+        cout << "   Masukkan Pendidikan Hakim : ";
+        getline(cin, x.pendidikan);
+        cout << "   Masukkan Jabatan Hakim : ";
+        getline(cin, x.jabatan);
+        cout << "   Masukkan Pangkat Hakim : ";
+        getline(cin, x.pangkat);
+        cout << "   Masukkan Umur Hakim : ";
+        cin >> x.usia;
+        adr_hakim P = alokasiHakim(x);
+        insertFirstHakim(L,P);
+        cout << "============================================================\n";
+        cout << endl;
+        cout << "           Hakim dengan NIP " << infoHakim(P).NIP << " telah ditambahkan\n";
+        cout << endl;
+        backToMenu();
+    }
 }
 
 void menuInsertTerdakwa(listHakim &L){
@@ -568,27 +604,35 @@ void menuInsertTerdakwa(listHakim &L){
         if (Q != NULL){
             dataTerdakwa x;
             cout << "============================================================\n";
-            cout << " Masukkan Nama Terdakwa : ";
-            cin >> x.nama;
-            cout << " Masukkan Alamat Terdakwa : ";
-            cin >> x.alamat;
             cout << " Masukkan NIK Terdakwa : ";
             cin >> x.NIK;
-            cout << " Masukkan Pekerjaan Terdakwa : ";
-            cin >> x.pekerjaan;
-            cout << " Masukkan Agama Terdakwa : ";
-            cin >> x.agama;
-            cout << " Masukkan Jenis Kelamin Terdakwa : ";
-            cin >> x.jenisKelamin;
-            cout << " Masukkan Tempat Tanggal Lahir Terdakwa : ";
-            cin >> x.tempatTglLahir;
-            adr_terdakwa P = alokasiTerdakwa(x);
-            insertTerdakwa(L,P,NIP);
-            cout << "============================================================\n";
-            cout << endl;
-            cout << "           Terdakwa dengan NIK " << infoTerdakwa(P).NIK << " telah ditambahkan\n";
-            cout << endl;
-            backToMenu();
+            if (!checkDuplicateHakim(L,x.NIK) ){
+                cout << " Masukkan Nama Terdakwa : ";
+                cin >> x.nama;
+                cout << " Masukkan Alamat Terdakwa : ";
+                cin >> x.alamat;
+                cout << " Masukkan Pekerjaan Terdakwa : ";
+                cin >> x.pekerjaan;
+                cout << " Masukkan Agama Terdakwa : ";
+                cin >> x.agama;
+                cout << " Masukkan Jenis Kelamin Terdakwa : ";
+                cin >> x.jenisKelamin;
+                cout << " Masukkan Tempat Tanggal Lahir Terdakwa : ";
+                cin >> x.tempatTglLahir;
+                adr_terdakwa P = alokasiTerdakwa(x);
+                insertTerdakwa(L,P,NIP);
+                cout << "============================================================\n";
+                cout << endl;
+                cout << "           Terdakwa dengan NIK " << infoTerdakwa(P).NIK << " telah ditambahkan\n";
+                cout << endl;
+                backToMenu();
+            }else{
+                cout << "============================================================\n";
+                cout << endl;
+                cout << "             Terdakwa dengan NIK " << x.NIK << " sudah ada\n";
+                cout << endl;
+                backToMenu();
+            }
         }else {
             cout << "============================================================\n";
             cout << endl;
@@ -650,7 +694,7 @@ void testCase(listHakim &L){
     u.jabatan = "Hakim";
     u.pangkat = "Pengadilan Tinggi";
     u.usia = 30;
-    
+
     adr_hakim P = alokasiHakim(p);
     adr_hakim Q = alokasiHakim(q);
     adr_hakim R = alokasiHakim(r);
@@ -664,7 +708,7 @@ void testCase(listHakim &L){
     insertFirstHakim(L, S);
     insertFirstHakim(L, T);
     insertFirstHakim(L, U);
-    
+
 
     dataTerdakwa a, b, c, d, e, f;
     a.nama = "Terdakwa 1";
@@ -727,7 +771,7 @@ void testCase(listHakim &L){
 
     cout << "============================================================\n";
     cout << endl;
-    cout << "                   Test Case Inserted                       \n";
+    cout << "              Test Case Berhasil Dimasukkan                       \n";
     cout << endl;
     backToMenu();
 }

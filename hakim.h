@@ -57,17 +57,19 @@ void dealokasiHakim(adr_hakim &P);
 void dealokasiTerdakwa(adr_terdakwa &P);
 
 void insertFirstHakim(listHakim &L, adr_hakim P);
-
 void deleteFirstHakim(listHakim &L, adr_hakim &P);
 void deleteLastHakim(listHakim &L, adr_hakim &P);
 void deleteAfterHakim(listHakim &L, adr_hakim Prec, adr_hakim &P);
 void deleteHakim(listHakim &L, adr_hakim &P, string nip);
 void deleteAllTerdakwa(adr_hakim &P);
+
 adr_hakim searchHakim(listHakim L, string nip);
 void insertTerdakwa(listHakim &L, adr_terdakwa P, string nip);
-adr_terdakwa cariDataTerdakwa(listHakim L,string NIP, string NIK);
+adr_terdakwa searchTerdakwa(listHakim L,string NIP, string NIK);
 void deleteTerdakwaFromHakim(listHakim &L, string NIP, string NIK, adr_terdakwa &Pterdakwa);
 void hakimWithLeastTerdakwa(listHakim L, adr_hakim &Q, int &min);
+bool checkDuplicateHakim(listHakim L, string NIP);
+bool checkDuplicateTerdakwa(listHakim L, string NIK);
 
 void showListHakim(listHakim L);
 void menuShowHakimWithTerdakwa(listHakim L);
@@ -78,6 +80,7 @@ void menuDeleteTerdakwa(listHakim &L);
 void menuInsertHakim(listHakim &L);
 void menuInsertTerdakwa(listHakim &L);
 void menuShowLeastTerdakwa(listHakim L);
+
 
 void printHakim(adr_hakim Q);
 void printTerdakwa(adr_terdakwa Q);

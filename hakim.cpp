@@ -605,20 +605,20 @@ void menuInsertTerdakwa(listHakim &L){
             dataTerdakwa x;
             cout << "============================================================\n";
             cout << " Masukkan NIK Terdakwa : ";
-            cin >> x.NIK;
+            getline(cin, x.NIK);
             if (!checkDuplicateHakim(L,x.NIK) ){
                 cout << " Masukkan Nama Terdakwa : ";
-                cin >> x.nama;
+                getline(cin, x.nama);
                 cout << " Masukkan Alamat Terdakwa : ";
-                cin >> x.alamat;
+                getline(cin, x.alamat);
                 cout << " Masukkan Pekerjaan Terdakwa : ";
-                cin >> x.pekerjaan;
+                getline(cin, x.pekerjaan);
                 cout << " Masukkan Agama Terdakwa : ";
-                cin >> x.agama;
+                getline(cin, x.agama);
                 cout << " Masukkan Jenis Kelamin Terdakwa : ";
-                cin >> x.jenisKelamin;
+                getline(cin, x.jenisKelamin);
                 cout << " Masukkan Tempat Tanggal Lahir Terdakwa : ";
-                cin >> x.tempatTglLahir;
+                getline(cin, x.tempatTglLahir);
                 adr_terdakwa P = alokasiTerdakwa(x);
                 insertTerdakwa(L,P,NIP);
                 cout << "============================================================\n";

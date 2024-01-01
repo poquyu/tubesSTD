@@ -1,5 +1,4 @@
 #include "hakim.h"
-#include "hakim.cpp"
 
 int main()
 {

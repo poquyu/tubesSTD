@@ -598,8 +598,9 @@ void menuInsertTerdakwa(listHakim &L){
     }else{
         string NIP;
         cout << "============================================================\n";
+        cin.ignore();
         cout << " Masukkan NIP Hakim : ";
-        cin >> NIP;
+        getline(cin,NIP);
         adr_hakim Q = searchHakim(L,NIP);
         if (Q != NULL){
             dataTerdakwa x;
@@ -717,6 +718,7 @@ void testCase(listHakim &L){
     a.pekerjaan = "PNS";
     a.agama = "Islam";
     a.jenisKelamin = "Laki-laki";
+    a.tempatTglLahir = "Batam/12-01-2004"
 
     b.nama = "Terdakwa 2";
     b.alamat = "Jalan 2";
@@ -724,6 +726,7 @@ void testCase(listHakim &L){
     b.pekerjaan = "PNS";
     b.agama = "Islam";
     b.jenisKelamin = "Laki-laki";
+    b.tempatTglLahir = "Tomohon/19-10-2004"
 
     c.nama = "Terdakwa 3";
     c.alamat = "Jalan 3";
@@ -731,6 +734,7 @@ void testCase(listHakim &L){
     c.pekerjaan = "PNS";
     c.agama = "Islam";
     c.jenisKelamin = "Laki-laki";
+    c.tempatTglLahir = "Batam/27-06-2004"
 
     d.nama = "Terdakwa 4";
     d.alamat = "Jalan 4";
@@ -738,6 +742,7 @@ void testCase(listHakim &L){
     d.pekerjaan = "PNS";
     d.agama = "Islam";
     d.jenisKelamin = "Laki-laki";
+    d.tempatTglLahir = "Pontianak/19-07-2004"
 
     e.nama = "Terdakwa 5";
     e.alamat = "Jalan 5";
@@ -745,6 +750,7 @@ void testCase(listHakim &L){
     e.pekerjaan = "PNS";
     e.agama = "Islam";
     e.jenisKelamin = "Laki-laki";
+    e.tempatTglLahir = "Jakarta/28-12-2004"
 
     f.nama = "Terdakwa 6";
     f.alamat = "Jalan 6";
@@ -752,7 +758,7 @@ void testCase(listHakim &L){
     f.pekerjaan = "PNS";
     f.agama = "Islam";
     f.jenisKelamin = "Laki-laki";
-
+    f.tempatTglLahir = "Surabaya/01-04-2004"
 
     adr_terdakwa A = alokasiTerdakwa(a);
     adr_terdakwa B = alokasiTerdakwa(b);

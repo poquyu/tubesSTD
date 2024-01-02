@@ -121,11 +121,15 @@ void deleteHakim(listHakim &L, adr_hakim &P, string NIP){
 
 adr_hakim searchHakim(listHakim L, string NIP){
     adr_hakim P = first(L);
-    while(nextHakim(P) != first(L) && infoHakim(P).NIP != NIP){
-        P = nextHakim(P);
-    }
-    if(infoHakim(P).NIP == NIP){
-        return P;
+    if (P != NULL){
+        while (nextHakim(P) != first(L) && infoHakim(P).NIP != NIP) {
+            P = nextHakim(P);
+        }
+        if (infoHakim(P).NIP == NIP) {
+            return P;
+        }else{
+            return NULL;
+        }
     }else{
         return NULL;
     }
@@ -217,34 +221,26 @@ void hakimWithLeastTerdakwa(listHakim L, adr_hakim &Q, int &min){
     Q = Pmin;
 }
 
-bool checkDuplicateHakim(listHakim L, string NIP){
-    adr_hakim P = first(L);
-    while(nextHakim(P) != first(L) && infoHakim(P).NIP != NIP){
-        P = nextHakim(P);
-    }
-    if(infoHakim(P).NIP == NIP){
-        return true;
-    }else{
-        return false;
-    }
-}
 
 bool checkDuplicateTerdakwa(listHakim L, string NIK){
     adr_hakim P = first(L);
     adr_terdakwa Q;
-    while(P != first(L)){
-        Q = firstTerdakwa(P);
-        while(Q != NULL && infoTerdakwa(Q).NIK != NIK){
-            Q = nextTerdakwa(Q);
-        }
-        if(Q != NULL){
-            return true;
-        }
-        P = nextHakim(P);
+    if (P == NULL){
+        return false;
+    }else{
+        do {
+            Q = firstTerdakwa(P);
+            while(Q != NULL && infoTerdakwa(Q).NIK != NIK){
+                Q = nextTerdakwa(Q);
+            }
+            if(Q != NULL && infoTerdakwa(Q).NIK == NIK){
+                return true;
+            }
+            P = nextHakim(P);
+        } while(P != first(L));
+        return false;
     }
-    return false;
 }
-
 
 
 void dealokasiHakim(adr_hakim &P) {
@@ -359,13 +355,11 @@ void printTerdakwa(adr_terdakwa Q){
 
 void showListHakim(listHakim L) {
     system("cls");
+    cout << "============================================================\n" << endl;
+    cout << "                      List Hakim                           \n" << endl;
     adr_hakim P = first(L);
     if (P == NULL) {
-        cout << endl;
-        cout << "                      List Kosong                           \n";
-        cout << endl;
-        backToMenu();
-        char input = getch();
+        listKosong();
     }else {
         do {
             printHakim(P);
@@ -376,6 +370,8 @@ void showListHakim(listHakim L) {
 }
 void menuShowHakimWithTerdakwa(listHakim L){
     system("cls");
+    cout << "============================================================\n" << endl;
+    cout << "                  Hakim Deserta Terdakwa                    \n" << endl;
     if (first(L) == NULL){
         listKosong();
     }else{
@@ -411,11 +407,13 @@ void menuShowHakimWithTerdakwa(listHakim L){
 
 void menuSearchHakim(listHakim L){
     system("cls");
+    cout << "============================================================\n" << endl;
+    cout << "                       Cari Hakim                           \n" << endl;
     if (first(L) == NULL){
         listKosong();
     }else{
         string NIP;
-        cout << "============================================================\n";
+        cout << "============================================================\n" ;
         cout << " Masukkan NIP Hakim : ";
         cin >> NIP;
         adr_hakim Q = searchHakim(L,NIP);
@@ -432,6 +430,8 @@ void menuSearchHakim(listHakim L){
 
 void menuSearchTerdakwa(listHakim L){
     system("cls");
+    cout << "============================================================\n" << endl;
+    cout << "                     Cari Terdakwa                          \n" << endl;
     if (first(L) == NULL){
         listKosong();
     }else{
@@ -470,6 +470,8 @@ void menuSearchTerdakwa(listHakim L){
 
 void menuDeleteHakim(listHakim &L){
     system("cls");
+    cout << "============================================================\n"<< endl;
+    cout << "                     Hapus Hakim                         " << endl<< endl;
     if (first(L) == NULL){
         listKosong();
     }else{
@@ -496,6 +498,8 @@ void menuDeleteHakim(listHakim &L){
 
 void menuDeleteTerdakwa(listHakim &L){
     system("cls");
+    cout << "============================================================\n" << endl;
+    cout << "                     Hapus Terdakwa                         \n" << endl;
     if (first(L) == NULL){
         listKosong();
     }else{
@@ -541,6 +545,8 @@ void menuDeleteTerdakwa(listHakim &L){
 
 void menuShowLeastTerdakwa(listHakim L){
     system("cls");
+    cout << "============================================================\n"<< endl;
+    cout << "            Hakim dengan Terdakwa Paling Sedikit        " << endl<< endl;
     if (first(L) == NULL){
         listKosong();
     }else{
@@ -559,12 +565,15 @@ void menuShowLeastTerdakwa(listHakim L){
 
 void menuInsertHakim(listHakim &L){
     system("cls");
+    cout << "============================================================\n"<< endl;
+    cout << "                     Tambah Hakim                         \n"<< endl;
     dataHakim x;
     cout << "============================================================\n";
     cin.ignore();
     cout << "   Masukkan NIP Hakim : ";
     getline(cin, x.NIP);
-    if (checkDuplicateHakim(L,x.NIP)){
+    adr_hakim Q = searchHakim(L,x.NIP);
+    if (Q != NULL){
         cout << "============================================================\n";
         cout << endl;
         cout << "             Hakim dengan NIP " << x.NIP << " sudah ada\n";
@@ -593,6 +602,8 @@ void menuInsertHakim(listHakim &L){
 
 void menuInsertTerdakwa(listHakim &L){
     system("cls");
+    cout << "============================================================\n"<< endl;
+    cout << "                     Tambah Terdakwa                         \n"<< endl;
     if (first(L) == NULL){
         listKosong();
     }else{
@@ -607,7 +618,7 @@ void menuInsertTerdakwa(listHakim &L){
             cout << "============================================================\n";
             cout << " Masukkan NIK Terdakwa : ";
             getline(cin, x.NIK);
-            if (!checkDuplicateHakim(L,x.NIK) ){
+            if (!checkDuplicateTerdakwa(L,x.NIK) ){
                 cout << " Masukkan Nama Terdakwa : ";
                 getline(cin, x.nama);
                 cout << " Masukkan Alamat Terdakwa : ";
@@ -666,35 +677,35 @@ void testCase(listHakim &L){
     q.pendidikan = "S1";
     q.jabatan = "Hakim";
     q.pangkat = "Pengadilan Tinggi";
-    q.usia = 30;
+    q.usia = 32;
 
     r.nama = "Hakim 3";
     r.NIP = "789";
     r.pendidikan = "S1";
     r.jabatan = "Hakim";
     r.pangkat = "Pengadilan Tinggi";
-    r.usia = 30;
+    r.usia = 56;
 
     s.nama = "Hakim 4";
     s.NIP = "101";
     s.pendidikan = "S1";
     s.jabatan = "Hakim";
     s.pangkat = "Pengadilan Tinggi";
-    s.usia = 30;
+    s.usia = 60;
 
     t.nama = "Hakim 5";
     t.NIP = "102";
     t.pendidikan = "S1";
     t.jabatan = "Hakim";
     t.pangkat = "Pengadilan Tinggi";
-    t.usia = 30;
+    t.usia = 54;
 
     u.nama = "Hakim 6";
     u.NIP = "103";
     u.pendidikan = "S1";
     u.jabatan = "Hakim";
     u.pangkat = "Pengadilan Tinggi";
-    u.usia = 30;
+    u.usia = 35;
 
     adr_hakim P = alokasiHakim(p);
     adr_hakim Q = alokasiHakim(q);
@@ -781,7 +792,6 @@ void testCase(listHakim &L){
     cout << endl;
     backToMenu();
 }
-
 
 
 

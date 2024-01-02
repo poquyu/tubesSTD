@@ -67,7 +67,7 @@ adr_hakim searchHakim(listHakim L, string nip);
 void insertTerdakwa(listHakim &L, adr_terdakwa P, string nip);
 adr_terdakwa searchTerdakwa(listHakim L,string NIP, string NIK);
 void deleteTerdakwaFromHakim(listHakim &L, string NIP, string NIK, adr_terdakwa &Pterdakwa);
-void hakimWithLeastTerdakwa(listHakim L, adr_hakim &Q, int &min);
+void hakimWithLeastTerdakwa(listHakim L, adr_hakim &Q, int &count);
 bool checkDuplicateTerdakwa(listHakim L, string NIK);
 
 void showListHakim(listHakim L);

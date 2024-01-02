@@ -2,11 +2,18 @@
 #include <conio.h>
 
 void createListHakim(listHakim &L) {
+/*
+I.S. -
+F.S. Terbentuk list kosong 
+ */
     first(L) = NULL;
     last(L) = NULL;
 }
 
 adr_hakim alokasiHakim(dataHakim x) {
+/*
+    Mengembalikan elemen hakim baru dengan info = x, nextHakim = NULL, dan firstTerdakwa = NULL
+*/
     adr_hakim P = new elemenHakim;
     infoHakim(P) = x;
     nextHakim(P) = NULL;
@@ -15,6 +22,9 @@ adr_hakim alokasiHakim(dataHakim x) {
 }
 
 adr_terdakwa alokasiTerdakwa(dataTerdakwa x){
+/*
+    Mengembalikan elemen terdakwa baru dengan info = x, nextTerdakwa = NULL
+*/
     adr_terdakwa P = new elemenTerdakwa;
     infoTerdakwa(P) = x;
     nextTerdakwa(P) = NULL;
@@ -22,6 +32,10 @@ adr_terdakwa alokasiTerdakwa(dataTerdakwa x){
 }
 
 void insertFirstHakim(listHakim &L, adr_hakim P) {
+/*
+I.S. Terdapat listHakim L mungkin kosong, dan P pointer yang akan dimasukkan
+F.S. P menjadi elemen pertama pada listHakim L 
+*/
     if (first(L) == NULL) {
         first(L) = P;
         nextHakim(first(L)) = first(L);
@@ -34,18 +48,19 @@ void insertFirstHakim(listHakim &L, adr_hakim P) {
 }
 
 void deleteFirstHakim(listHakim &L, adr_hakim &P) {
+/* 
+I.S Terdapat listHakim L mungkin kosong
+F.S Elemen pertama pada listHakim L dihapus dan disimpan pada P
+ */
     if (first(L) != NULL) {
         if (nextHakim(first(L)) == first(L)) {
             P = first(L);
             first(L) = NULL;
+            last(L) = NULL;
         } else {
-            adr_hakim Q = first(L);
-            while (nextHakim(Q) != first(L)) {
-                Q = nextHakim(Q);
-            }
             P = first(L);
-            first(L) = nextHakim(P);
-            nextHakim(Q) = first(L);
+            first(L) = nextHakim(first(L));
+            nextHakim(last(L)) = first(L);
             nextHakim(P) = NULL;
         }
     } else {
@@ -54,6 +69,10 @@ void deleteFirstHakim(listHakim &L, adr_hakim &P) {
 }
 
 void deleteLastHakim(listHakim &L, adr_hakim &P) {
+/*
+I.S Terdapat listHakim L mungkin kosong
+F.S Elemen terakhir pada listHakim L dihapus dan disimpan pada P
+*/
     if (first(L) != NULL) {
         if (nextHakim(first(L)) == first(L)) {
             P = first(L);
@@ -66,6 +85,7 @@ void deleteLastHakim(listHakim &L, adr_hakim &P) {
             P = nextHakim(Q);
             nextHakim(Q) = first(L);
             nextHakim(P) = NULL;
+            last(L) = Q;
         }
     } else {
         cout << "List Kosong\n";
@@ -73,6 +93,10 @@ void deleteLastHakim(listHakim &L, adr_hakim &P) {
 }
 
 void deleteAfterHakim(listHakim &L, adr_hakim Prec, adr_hakim &P) {
+/*
+I.S Terdapat listHakim L mungkin kosong
+F.S Elemen setelah Prec pada listHakim L dihapus dan disimpan pada P
+*/
     if (first(L) != NULL) {
         if (nextHakim(first(L)) == first(L)) {
             P = first(L);
@@ -86,10 +110,14 @@ void deleteAfterHakim(listHakim &L, adr_hakim Prec, adr_hakim &P) {
         cout << "List Kosong\n";
     }
 }
-    //cout << "=============================================\n";
 
 
 void deleteAllTerdakwa(adr_hakim &P){
+/*
+I.S. Terdapat P yang pasti memiliki terdakwa
+F.S. Semua terdakwa pada P dihapus
+*/
+
     adr_terdakwa Q = firstTerdakwa(P);
     while(Q != NULL){
         adr_terdakwa R = Q;
@@ -100,6 +128,10 @@ void deleteAllTerdakwa(adr_hakim &P){
 }
 
 void deleteHakim(listHakim &L, adr_hakim &P, string NIP){
+/*
+I.S. Terdapat listHakim L yang mungkin kosong, dan NIP hakim yang akan dihapus
+F.S. Hakim dengan NIP yang sama dihapus dari listHakim L
+*/
     adr_hakim Q =searchHakim(L,NIP);
     if(Q != NULL){
         if(Q == first(L)){
@@ -120,6 +152,10 @@ void deleteHakim(listHakim &L, adr_hakim &P, string NIP){
 }
 
 adr_hakim searchHakim(listHakim L, string NIP){
+/*
+    Mengembalikan pointer ke elemen hakim dengan NIP yang sama dengan NIP yang dicari
+*/
+
     adr_hakim P = first(L);
     if (P != NULL){
         while (nextHakim(P) != first(L) && infoHakim(P).NIP != NIP) {
@@ -135,6 +171,11 @@ adr_hakim searchHakim(listHakim L, string NIP){
     }
 }
 void insertTerdakwa(listHakim &L, adr_terdakwa P, string NIP){
+/*
+I.S. Terdapat listHakim L, P yaitu pointer terdakwa yang akan dimasukkan ke hakim yang memiliki NIP yang sesuai
+F.S. Terdakwa P dimasukkan ke hakim dengan NIP yang sesuai
+*/
+
     adr_hakim Q = searchHakim(L,NIP);
     if(firstTerdakwa(Q) == NULL){
         firstTerdakwa(Q) = P;
@@ -147,6 +188,9 @@ void insertTerdakwa(listHakim &L, adr_terdakwa P, string NIP){
 
 
 adr_terdakwa searchTerdakwa(listHakim L,string NIP, string NIK){
+/*
+    Mengembalikan pointer ke elemen terdakwa dengan NIK yang sama dengan NIK yang dicari
+*/
     adr_hakim P = searchHakim(L,NIP);
     adr_terdakwa Q = firstTerdakwa(P);
     if (P != NULL){
@@ -165,6 +209,10 @@ adr_terdakwa searchTerdakwa(listHakim L,string NIP, string NIK){
 }
 
 void deleteTerdakwaFromHakim(listHakim &L, string NIP, string NIK, adr_terdakwa &Pterdakwa){
+/*
+I.S. Terdapat listHakim L, NIP hakim yang memiliki terdakwa, dan NIK terdakwa yang akan dihapus
+F.S. Terdakwa dengan NIK yang sesuai dihapus dari hakim dengan NIP yang sesuai
+*/
     adr_hakim P = searchHakim(L,NIP);
     adr_terdakwa Q = searchTerdakwa(L,NIP,NIK);
     //cari last
@@ -201,9 +249,13 @@ void deleteTerdakwaFromHakim(listHakim &L, string NIP, string NIK, adr_terdakwa 
     }
 }
 
-void hakimWithLeastTerdakwa(listHakim L, adr_hakim &Q, int &min){
+void hakimWithLeastTerdakwa(listHakim L, adr_hakim &Q, int &count){
+/*
+I.S. Terdapat listHakim L mungkin kosong
+F.S. Q adalah hakim dengan terdakwa paling sedikit, count adalah jumlah terdakwa pada Q
+*/
     Q = first(L);
-    min = 9999999;
+    int min = 9999999;
     adr_hakim Pmin;
     do {
         adr_terdakwa P = firstTerdakwa(Q);
@@ -219,10 +271,14 @@ void hakimWithLeastTerdakwa(listHakim L, adr_hakim &Q, int &min){
         Q = nextHakim(Q);
     } while(Q != first(L));
     Q = Pmin;
+    count = min;
 }
 
 
 bool checkDuplicateTerdakwa(listHakim L, string NIK){
+/*
+    Mengembalikan true jika terdakwa dengan NIK yang sama dengan NIK yang dicari ada pada listHakim L
+*/
     adr_hakim P = first(L);
     adr_terdakwa Q;
     if (P == NULL){
